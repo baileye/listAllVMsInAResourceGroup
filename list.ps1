@@ -1,0 +1,21 @@
+$coresPerVM = 16;
+
+$count = 0;
+
+$AzureResourceGroup1 = 'rdp';
+
+Write-Output "Azure Hybrid Render Virtual Machines:";
+Get-AzureRmVM -ResourceGroupName $AzureResourceGroup1 | ForEach-Object {  
+    $count++;
+    Write-Host -NoNewline "## VM " $count;
+    Write-Output ""
+    Start-Sleep -m 40
+}
+Write-Output ""
+Write-Output "################"
+Write-Output ""
+
+Write-Host -NoNewline "### Number of Virtual Machines: " $count;
+Write-Output ""
+$cores = $count*$coresPerVM;
+Write-Host -NoNewline "### Number of Render Cores:     " $cores;
